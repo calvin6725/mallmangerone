@@ -30,9 +30,10 @@ export default {
     };
   },
   methods:{
-    handleLogin(){
-      this.$http.post(`login`,this.formdata)
-      .then((res)=>{
+    async handleLogin(){
+
+      const res=await this.$http.post(`login`,this.formdata)
+      
         //es6 对象结构赋值
         const{
           data,
@@ -45,10 +46,10 @@ export default {
         }else{
             this.$message.warning(msg);
         }
-      }).catch((res)=>{
-        console.log(res);
-      
-      })
+     
+
+
+
     }
   }
 };
