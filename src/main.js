@@ -5,9 +5,15 @@ import App from './App'
 import router from './router'
 
 import ElementUI from 'element-ui';
+import MyHttpServer from '@/plugins/http'
+
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/css/react.css'
+
 //使用vue插件
 Vue.use(ElementUI);
+Vue.use(MyHttpServer)
+
 
 Vue.config.productionTip = false
 
