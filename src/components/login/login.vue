@@ -40,16 +40,14 @@ export default {
           meta:{msg,status}
         }=res.data
         if(status===200){
+          // 保存token
+          localStorage.setItem('token',data.token)
           //编程式导航
           this.$router.push({name:'home'})
            this.$message.success(msg);
         }else{
             this.$message.warning(msg);
         }
-     
-
-
-
     }
   }
 };
