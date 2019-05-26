@@ -6,6 +6,7 @@ import router from './router'
 
 import ElementUI from 'element-ui';
 import MyHttpServer from '@/plugins/http'
+import moment from 'moment'
 
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/react.css'
@@ -16,6 +17,11 @@ Vue.use(MyHttpServer)
 
 
 Vue.config.productionTip = false
+//全局过滤器--处理日期
+Vue.filter('fmtdata',(v)=>{
+  return moment(v).format('YYYY-MM-DD')
+})
+
 
 /* eslint-disable no-new */
 new Vue({
