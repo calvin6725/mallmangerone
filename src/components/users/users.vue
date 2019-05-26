@@ -18,7 +18,9 @@
       <el-button type="success" @click="showAddUserDia()">添加用户</el-button>
     </el-row>
     <!-- 3.表格 -->
-    <el-table :data="userlist" style="width: 100%">
+    <el-table :data="userlist" 
+    height="300px"
+    style="width: 100%">
       <el-table-column type="index" label="#" width="160"></el-table-column>
       <el-table-column prop="username" label="姓名" width="180"></el-table-column>
       <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
@@ -42,7 +44,15 @@
       </el-table-column>
       <el-table-column prop label="操作" width="180">
         <template slot-scope="scope">
-          <el-button size="mini" plain type="primary" icon="el-icon-edit" circle></el-button>
+          <el-button 
+          size="mini" 
+          plain 
+          type="primary" 
+          icon="el-icon-edit"
+           circle
+           @click="showEditUserDia()"
+           >
+           </el-button>
           <el-button 
           size="mini" 
           plain 
@@ -87,6 +97,30 @@
   </div>
 </el-dialog>
 
+<!-- 编辑用户的对话框 -->
+    <el-dialog title="编辑用户" :visible.sync="dialogFormVisibleEdit">
+  <el-form :model="form">
+    <el-form-item label="用户名" label-width="100px">
+      <el-input v-model="form.username" autocomplete="off"></el-input>
+    </el-form-item>
+
+        <el-form-item label="邮  箱" label-width="100px">
+      <el-input v-model="form.email" autocomplete="off"></el-input>
+    </el-form-item>
+        <el-form-item label="电 话" label-width="100px">
+      <el-input v-model="form.mobile" autocomplete="off"></el-input>
+    </el-form-item>
+    
+  </el-form>
+  <div slot="footer" class="dialog-footer">
+    <el-button @click="dialogFormVisibleEdit = false">取 消</el-button>
+    <el-button type="primary" @click="addUser()">确 定</el-button>
+  </div>
+</el-dialog>
+
+
+
+
   </el-card>
 </template>
 <script>
@@ -107,13 +141,19 @@ export default {
         password:"",
         email:"",
         mobile:""
-      }
+      },
+       // 编辑用户对话框:显示与隐藏
+      dialogFormVisibleEdit:false
     };
   },
   created() {
     this.getuserList();
   },
   methods: {
+      //编辑用户：
+      showEditUserDia(){
+          this. dialogFormVisibleEdit=true;
+      },
       //删除用户--打开消息盒子（config）
       showDeleUserMsgBox(userId){
             this.$confirm('删除用户？', '提示', {
@@ -194,6 +234,7 @@ export default {
       console.log(`每页 ${val} 条`);
       //触发每页显示条数时更改 page-size
       this.pagesize=val;
+      this.pagenum=1;
       this.getuserList();
     },
     handleCurrentChange(val) {
