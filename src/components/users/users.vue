@@ -40,11 +40,20 @@
         <template>
           <el-button size="mini" plain type="primary" icon="el-icon-edit" circle></el-button>
           <el-button size="mini" plain type="danger" icon="el-icon-delete" circle></el-button>
-        <el-button size="mini" plain type="success" icon="el-icon-check" circle></el-button>
+          <el-button size="mini" plain type="success" icon="el-icon-check" circle></el-button>
         </template>
       </el-table-column>
     </el-table>
     <!-- 4.分页 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="pagenum"
+      :page-sizes="[2,4,6,8]"
+      :page-size="2"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    ></el-pagination>
   </el-card>
 </template>
 
@@ -64,6 +73,25 @@ export default {
     this.getuserList();
   },
   methods: {
+    //分页相关方法
+    // size-change：  每页显示条数变化时 触发
+    // current-change  ：当前页改变时 触发
+    // current-page   设置当前页是第几页
+    // page-sizes     每页多少条的数据数组
+    // page-size 设置显示多少条
+    // total  数据总数
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      //触发每页显示条数时更改 page-size
+      this.pagesize=val;
+    //   this.pagenum=1;
+      this.getuserList();
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.pagenum=val;
+       this.getuserList();
+    },
     async getuserList() {
       //先设置请求头，获取请求头之后 再发送请求时会连同请求头一起再发送请求
       // query     查询参数
