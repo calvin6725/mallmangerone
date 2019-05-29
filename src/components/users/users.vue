@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <!-- 1.面包屑 -->
-    <el-breadcrumb separator="/">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item>首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
@@ -187,7 +187,6 @@ export default {
       //分配角色--修改用户角色
      async setRole(){
          const res=await this.$http.put(`users/${this.currUserId}/role`,{rid:this.currRoleId})
-      
       //关闭对话框：
       this.dialogFormVisibleRol=false
       },

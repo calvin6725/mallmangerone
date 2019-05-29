@@ -31,7 +31,7 @@
             </template>
             <el-menu-item index="users">
               <i class="el-icon-location"></i>
-              <span>用来列表</span>
+              <span>用户列表</span>
             </el-menu-item>
           </el-submenu>
           <!-- 2 -->
@@ -40,11 +40,11 @@
               <i class="el-icon-location"></i>
               <span>权限管理</span>
             </template>
-            <el-menu-item index="1-1">
+            <el-menu-item index="role">
               <i class="el-icon-location"></i>
               <span>角色列表</span>
             </el-menu-item>
-              <el-menu-item index="1-1">
+              <el-menu-item index="rights">
               <i class="el-icon-location"></i>
               <span>权限列表</span>
             </el-menu-item>
